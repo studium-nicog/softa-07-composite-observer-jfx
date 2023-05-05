@@ -1,5 +1,6 @@
-_This is an assignment to the [Software Architecture](https://ohm-softa.github.io) class at the [Technische Hochschule Nürnberg](http://www.th-nuernberg.de)._
+> Zum Verwenden Java 11 (Liberica) unter den project settings in intellij auswählen! 
 
+_This is an assignment to the [Software Architecture](https://ohm-softa.github.io) class at the [Technische Hochschule Nürnberg](http://www.th-nuernberg.de)._
 
 # Assignment 7: Composite and Observer
 

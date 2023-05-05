@@ -52,6 +52,10 @@ public class Meal {
 		this.notes = notes;
 	}
 
+	public boolean isVegetarian() {
+		return notes.stream().noneMatch(note -> note.contains("fleisch"));
+	}
+
 	@Override
 	public boolean equals(Object o) {
 		if (this == o) return true;

@@ -7,11 +7,14 @@ import okhttp3.logging.HttpLoggingInterceptor;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
@@ -22,9 +25,8 @@ class OpenMensaAPITests {
 	private static final Logger logger = LogManager.getLogger(OpenMensaAPITests.class);
 	private OpenMensaAPI openMensaAPI;
 
-	@BeforeAll
+	@BeforeEach
 	void setup() {
-
 		// use this to intercept all requests and output them to the logging facilities
 		HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor();
 		loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
@@ -35,7 +37,7 @@ class OpenMensaAPITests {
 
 		Retrofit retrofit = new Retrofit.Builder()
 			.addConverterFactory(GsonConverterFactory.create())
-			.baseUrl("https://openmensa.org/api/v2/")
+			.baseUrl("https://openmensa.org/")
 			.client(client)
 			.build();
 
@@ -44,12 +46,8 @@ class OpenMensaAPITests {
 
 	@Test
 	void testGetMeals() throws IOException {
-		// TODO prepare call
-
-		// TODO execute the call synchronously
-
-		// TODO unwrap the body
-		List<Meal> meals = null;
+		String today = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
+		List<Meal> meals = openMensaAPI.getMeals(today).execute().body();
 
 		assertNotNull(meals);
 		assertNotEquals(0, meals.size());
